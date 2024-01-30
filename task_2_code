@@ -1,0 +1,20 @@
+int led = 12;
+int sen = 13;  
+void setup() {
+  Serial.begin(115200);
+  pinMode(sen, INPUT); 
+  pinMode(led, OUTPUT);  
+}
+void loop() {
+  long res = digitalRead(sen);
+    if(res == HIGH) {
+      digitalWrite (led, HIGH);
+      Serial.println("Motion detected!");
+      delay(1000);
+    }
+    else {
+      digitalWrite (led, LOW);
+      Serial.println("Motion absent!");
+      delay(1000);
+      }
+}
