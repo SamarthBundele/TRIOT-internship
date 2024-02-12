@@ -1,10 +1,44 @@
 <!DOCTYPE html>
 <html>
 <body>
+<title>Samarth</title>
 <center>
-<h1>My Home Automation</h1>
+<h1>TASK 3 TRIOT</h1>
 <h3> LED 1 </h3>
-<button onclick="window.location = 'http://'+location.hostname+'/led1/on'">On</button><button onclick="window.location = 'http://'+location.hostname+'/led1/off'">Off</button>
+<button id="led1OnBtn">On</button>
+<button id="led1OffBtn">Off</button>
+<span id="led1Status"></span>
 </center>
+<script>
+  document.getElementById("led1OnBtn").addEventListener("click", function() {
+    fetch("/led1/on").then(response => {
+      if (response.ok) {
+        return response.text();
+      } else {
+        throw new Error("LED control failed");
+      }
+    }).then(data => {
+      document.getElementById("led1Status").textContent = "LED1: On";
+    }).catch(error => {
+      console.error(error);
+      document.getElementById("led1Status").textContent = "Error turning LED1 on";
+    });
+  });
+
+  document.getElementById("led1OffBtn").addEventListener("click", function() {
+    fetch("/led1/off").then(response => {
+      if (response.ok) {
+        return response.text();
+      } else {
+        throw new Error("LED control failed");
+      }
+    }).then(data => {
+      document.getElementById("led1Status").textContent = "LED1: Off";
+    }).catch(error => {
+      console.error(error);
+      document.getElementById("led1Status").textContent = "Error turning LED1 off";
+    });
+  });
+</script>
 </body>
 </html>
