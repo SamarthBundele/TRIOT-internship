@@ -1,5 +1,5 @@
-int led = 12;
-int sen = 13;  
+int led = 6;
+int sen = 7;  
 void setup() {
   Serial.begin(115200);
   pinMode(sen, INPUT); 
